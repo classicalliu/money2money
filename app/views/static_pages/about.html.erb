@@ -1,0 +1,45 @@
+<% provide(:title, '关于') %>
+
+<%= render 'shared/message' %>
+
+<h2>公司简介</h2>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <p><%= ('X' * 80 + "\n") * 10 %></p>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-5">
+    <h2>公司地址</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3447.411963832258!2d120.03884031481117!3d30.225326516960482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x344b7b08d154046d%3A0x6ae8e0800706f5d6!2z5rWZ5rGf5bel5Lia5aSn5a2m5bGP5bOw5qCh5Yy6LeWbvuS5pummhg!5e0!3m2!1szh-CN!2sus!4v1465536317846" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+  <div class="col-md-5 col-md-offset-2">
+    <h2>联系我们</h2>
+    <%= form_for @contact do |f| %>
+        <div class="form-group">
+          <%= f.label :email, 'email' %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :name, '姓名' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :title, '主题' %>
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :message, '反馈内容' %>
+          <%= f.text_area :message, class: 'form-control' %>
+        </div>
+
+        <%= f.submit '提交', class: 'btn btn-default pull-right' %>
+    <% end %>
+  </div>
+</div>

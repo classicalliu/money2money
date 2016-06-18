@@ -1,0 +1,32 @@
+<% provide(:title, '账户充值') %>
+
+<%= render 'shared/message' %>
+
+<!-- FORGOT PASSWORD FORM -->
+<div class="text-center" style="padding:50px 0">
+  <div class="logo">账户充值</div>
+  <!-- Main Form -->
+  <div class="login-form-1">
+    <%= form_for @user, url: pay_path, html: {method: :post, class: 'text-left'} do |f| %>
+        <div class="etc-login-form">
+          <p>请输入充值金额</p>
+        </div>
+        <div class="login-form-main-message"></div>
+        <div class="main-login-form">
+          <div class="login-group">
+            <div class="form-group field">
+              <%= f.text_field :money, autofocus: true, class:'form-control', placeholder: '请输入充值金额' %>
+            </div>
+          </div>
+
+          <div class="actions">
+            <%= f.submit '充值', class: 'login-button' do %>
+                <i class="fa fa-chevron-right"></i>
+            <% end %>
+          </div>
+
+        </div>
+    <% end %>
+  </div>
+  <!-- end:Main Form -->
+</div>

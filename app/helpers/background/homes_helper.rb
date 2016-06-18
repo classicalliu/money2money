@@ -1,0 +1,2 @@
+module Background::HomesHelper
+end

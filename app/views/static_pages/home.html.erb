@@ -1,0 +1,134 @@
+<% provide(:title, '主页') %>
+
+<%= render 'shared/message' %>
+
+<!--图片轮播-->
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <% 4.times do |index| %>
+        <div class="item <%= 'active' if index == 0 %>">
+          <%= image_tag "heading#{index}.jpg" %>
+        </div>
+    <% end %>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">上一张</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">下一张</span>
+  </a>
+</div>
+
+<!--新手专享-->
+<h3>新手专享</h3>
+<div class="row home-row">
+
+  <div class="col-md-2">
+    <%= image_tag 'new_user1.png', class: 'new-user-image' %>
+  </div>
+
+  <div class="col-md-2 new-user-introduce">
+    <p class="new-user-h4">财神道</p>
+    <p class="expect-year">预期年化</p>
+    <p class="percent">10%</p>
+  </div>
+
+  <div class="col-md-4 new-user-introduce">
+    <p class="new-user-h4">30天尝鲜10%预期年化收益</p>
+    <p class="expect-year">期限</p>
+    <p class="percent">30天</p>
+  </div>
+
+  <div class="col-md-2">
+
+  </div>
+
+  <div class="col-md-2">
+    <%= link_to '立即抢购', loans_path, type: 'button', class: 'btn btn-danger buy-now' %>
+  </div>
+
+</div>
+
+<div class="row home-row">
+
+  <div class="col-md-2">
+    <%= image_tag 'new_user2.png', class: 'new-user-image' %>
+  </div>
+
+  <div class="col-md-2 new-user-introduce">
+    <p class="new-user-h4">财神道</p>
+    <p class="expect-year">预期年化</p>
+    <p class="percent">10%</p>
+  </div>
+
+  <div class="col-md-4 new-user-introduce">
+    <p class="new-user-h4">我出本金你赚收益,体验投资乐趣</p>
+    <p class="expect-year">期限</p>
+    <p class="percent">3天</p>
+  </div>
+
+  <div class="col-md-2">
+
+  </div>
+
+  <div class="col-md-2">
+    <%= link_to '立即抢购', loans_path, type: 'button', class: 'btn btn-danger buy-now' %>
+  </div>
+
+</div>
+
+<h3>推荐产品</h3>
+<div class="row home-row">
+  <div class="col-md-4">
+    <%= image_tag 'product_car.png', class: 'product-image' %>
+    <!--<p>培训贷款</p>-->
+    <p><%= link_to '培训贷款', new_loan_path, class: 'btn btn-success' %></p>
+  </div>
+
+  <div class="col-md-4">
+    <%= image_tag 'product_edu.png', class: 'product-image' %>
+    <!--<p>车贷</p>-->
+    <p><%= link_to '车贷', new_loan_path, class: 'btn btn-info' %></p>
+  </div>
+
+  <div class="col-md-4">
+    <%= image_tag 'product_elec.png', class: 'product-image' %>
+    <!--<p>数码消费贷款</p>-->
+    <p><%= link_to '数码消费贷款', new_loan_path, class: 'btn btn-warning' %></p>
+  </div>
+</div>
+
+<h3>产品预告</h3>
+<div class="row home-row">
+  <div class="col-md-3 coming-soon">
+    <p>
+      即将<br/>
+      发布
+    </p>
+    <%= image_tag 'product_preview.png', class: 'product-preview-image' %>
+  </div>
+  <div class="col-md-9 please-wait">
+    <p>敬请期待......</p>
+  </div>
+</div>
+
+<h3>网站数据统计</h3>
+<div class="row home-row">
+  <div class="col-md-12">
+    <%= image_tag 'graph1.png', class: 'data-graph' %>
+    <%= image_tag 'graph2.png', class: 'data-graph' %>
+  </div>
+</div>

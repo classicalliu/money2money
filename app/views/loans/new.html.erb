@@ -1,0 +1,114 @@
+<% provide(:title, '填写借款信息') %>
+
+<%= render 'shared/message' %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h1>填写借款信息</h1>
+
+    <%= form_for @loan do |f| %>
+        <div class="form-group">
+          <%= f.label :mount, '金额' %>
+          <%= f.text_field :mount, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :use, '用途' %>(学费 车贷 数码贷款 其它)
+          <%= f.text_field :use, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :way, '还款方式' %>
+          <%= f.text_field :way, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :period, '还款周期' %>
+          <%= f.text_field :period, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :job, '工作' %>
+          <%= f.text_field :job, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :company_add, '公司地址' %>
+          <%= f.text_field :company_add, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :salary, '月工资' %>
+          <%= f.text_field :salary, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :message, '留言' %>
+          <%= f.text_area :message, class: 'form-control' %>
+        </div>
+
+        <h2>担保人信息</h2>
+
+        <% @loan.guarantors.each_with_index do |guarantor, index| %>
+            <%
+              relation = case index
+                           when 0
+                             '父亲'
+                           when 1
+                             '母亲'
+                           else
+                             '朋友'
+                         end
+            %>
+            <h3><%= relation %></h3>
+
+            <%= f.fields_for 'guarantors_attributes[]', guarantor do |ff| %>
+                <%= ff.hidden_field :relationship, class: 'form-control', value: relation %>
+
+
+                <div class="form-group">
+                  <%= ff.label :name, '姓名' %>
+                  <%= ff.text_field :name, class: 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= ff.label :phone_number, '联系电话' %>
+                  <%= ff.text_field :phone_number, class: 'form-control' %>
+                </div>
+
+                <% if index == 2 %>
+                    <div class="radio">
+                      <%= ff.radio_button :sex, '男', checked: true, id: "loan_guarantors_attributes__sex_male#{index}" %>
+                      <%= ff.label "sex_male#{index}", '男' %>
+                      <%= ff.radio_button :sex, '女', id: "loan_guarantors_attributes__sex_female#{index}" %>
+                      <%= ff.label "sex_female#{index}", '女' %>
+                    </div>
+                <% end %>
+
+
+                <div class="form-group">
+                  <%= ff.label :address, '家庭住址' %>
+                  <%= ff.text_field :address, class: 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= ff.label :job, '工作' %>
+                  <%= ff.text_field :job, class: 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= ff.label :salary, '工资' %>
+                  <%= ff.text_field :salary, class: 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                  <%= ff.label :id_card, '身份证号码' %>
+                  <%= ff.text_field :id_card, class: 'form-control' %>
+                </div>
+            <% end %>
+        <% end %>
+
+        <%= f.submit '提交', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

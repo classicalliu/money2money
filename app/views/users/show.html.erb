@@ -1,0 +1,100 @@
+<% provide(:title, '用户资料') %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 toppad">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">用户资料</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-3 col-lg-3 " align="center">
+            <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive">-->
+            <%= image_tag current_user.avatar.url(:medium), class: 'byemax' %>
+            <%= form_for @user, html: {multipart: true} do |f| %>
+                <%# f.file_field :avatar,  onchange: 'this.form.submit()' %>
+                <span class="btn btn-warning btn-file btn-sm upload-btn">上传头像<%= f.file_field :avatar, onChange: 'this.form.submit(); window.alert=null;' %></span>
+                <%= f.hidden_field :is_head, value: 'true' %>
+                <!--<div class="upload-btn">-->
+                  <!--<%# f.submit '上传', class: 'btn btn-warning' %>-->
+                <!--</div>-->
+            <% end %>
+          </div>
+
+          <div class=" col-md-9 col-lg-9 ">
+            <table class="table table-user-information">
+              <tbody>
+              <tr>
+                <td>电子邮箱:</td>
+                <td><%= @user.email %></td>
+              </tr>
+              <tr>
+                <td>姓名:</td>
+                <td><%= @user.name %></td>
+              </tr>
+              <tr>
+                <td>联系电话:</td>
+                <td><%= @user.phone_number %></td>
+              </tr>
+              <tr>
+                <td>性别:</td>
+                <td><%= @user.sex %></td>
+              </tr>
+              <tr>
+                <td>家庭住址:</td>
+                <td><%= @user.address %></td>
+              </tr>
+              <tr>
+                <td>身份证:</td>
+                <td><%= @user.id_card %></td>
+              </tr>
+              <tr>
+                <td>登陆次数:</td>
+                <td><%= @user.sign_in_count %></td>
+              </tr>
+              <tr>
+                <td>当前IP:</td>
+                <td><%= @user.current_sign_in_ip %></td>
+              </tr>
+              <tr>
+                <td>上次登陆时间:</td>
+                <td><%= get_time @user.last_sign_in_at %></td>
+              </tr>
+              <tr>
+                <td>上次登陆IP地址:</td>
+                <td><%= @user.last_sign_in_ip %>  <%= @city.to_s %></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+
+              </tbody>
+            </table>
+
+            <%# link_to '联系我', '#', class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <%= mail_to "#{@user.email}", data: {'original-title': '给我发邮件', toggle: 'tooltip'}, type: 'button', class: 'btn btn-sm btn-primary' do %>
+            <i class="glyphicon glyphicon-envelope"></i>
+        <% end %>
+        <!--<a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>-->
+                        <span class="pull-right">
+                                  <%= link_to edit_user_path, data: {'original-title': '编辑我的资料', toggle: 'tooltip'}, type: 'button', class: 'btn btn-sm btn-warning' do %>
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                  <% end %>
+
+                          <%= link_to registration_path(:user), data: {confirm: '确定注销?', commit: '注销', cancel: '取消', 'original-title': '注销用户', toggle: 'tooltip'}, method: :delete, type: 'button', class: 'btn btn-sm btn-danger' do %>
+                          <i class="glyphicon glyphicon-remove"></i>
+                          <% end %>
+
+
+                          <!--<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>-->
+                          <!--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>-->
+                        </span>
+      </div>
+
+    </div>
+  </div>
+</div>

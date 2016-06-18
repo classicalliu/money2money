@@ -1,0 +1,13 @@
+<% content_for :search do %>
+    <%= form_for [:background, :manage, User.new], url: background_search_user_path, method: :get, html: {class: 'sidebar-form'} do |f| %>
+        <div class="input-group">
+          <%= f.text_field :search_text, type: 'text', class: 'form-control', placeholder: 'Search...' %>
+          <span class="input-group-btn">
+            <%= f.button type: 'submit', name: 'commit', class: 'btn btn-flat', onclick: "document.getElementById('new_user').submit()" do %>
+            <i class="fa fa-search"></i>
+            <% end %>
+            <!--<button type="submit" name="commit" class="btn btn-flat" onclick="document.getElementById('new_user').submit()"><i class="fa fa-search"></i></button>-->
+          </span>
+        </div>
+    <% end %>
+<% end %>

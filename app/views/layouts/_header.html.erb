@@ -1,0 +1,54 @@
+<!--<div class="navbar-wrapper">-->
+<!--<div class="container-fluid">-->
+<nav class="navbar navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!--<a class="navbar-brand" href="#">Logo</a>-->
+      <%= image_tag "logo.png", class: 'navbar-brand' %>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!--<li class="active"><a href="#" class="">Home</a></li>-->
+        <li class="active"><%= link_to '主页', home_path %></li>
+        <li><%= link_to '投资', loans_path %></li>
+        <li><%= link_to '贷款', new_loan_path %></li>
+        <li><%= link_to '满标项目', full_index_path %></li>
+        <li><%= link_to '安全保障', '#' %></li>
+        <li><%= link_to '关于我们', about_path %></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li class="dropdown">
+          <% if current_user %>
+              <%= link_to '#', html_options = {class: 'dropdown-toggle active', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false'} do %>
+                  我的账户<span class="caret"></span>
+              <% end %>
+          <% end %>
+          <ul class="dropdown-menu">
+            <% if current_user %>
+                <li><%= link_to '账户总览', account_info_path %></li>
+                <li><%= link_to '查看资料', current_user %></li>
+                <li><%= link_to '修改资料', edit_user_path(current_user) %></li>
+                <li><%= link_to '修改密码', edit_registration_path(:user) %></li>
+                <li><%= link_to '退出登录', destroy_user_session_path, :method => :delete %></li>
+            <% end %>
+            <!--<li><a href="#">Change Password</a></li>-->
+            <!--<li><a href="#">My Profile</a></li>-->
+          </ul>
+        </li>
+        <% unless current_user %>
+            <li><%= link_to('注册', new_registration_path(:user)) %></li>
+            <li><%= link_to('登陆', new_session_path(:user)) %></li>
+        <% end %>
+        <!--<li class=""><%# link_to '注销', destroy_user_session_path, method: :delete %></li>-->
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--</div>-->
+<!--</div>-->

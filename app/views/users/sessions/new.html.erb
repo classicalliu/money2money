@@ -1,0 +1,48 @@
+<% provide(:title, '登陆用户') %>
+<!-- LOGIN FORM -->
+<div class="text-center" style="padding:50px 0">
+
+  <div class="row">
+    <div class="col-md-8 col-xs-2">
+      <%= image_tag 'background_login.png', class: 'background-login' %>
+    </div>
+    <div class="col-md-4 col-xs-10 login-form">
+      <div class="logo">登陆</div>
+      <!-- Main Form -->
+      <div class="login-form-1">
+        <%= devise_error_messages! %>
+        <%= render 'shared/message' %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+              <div class="login-group">
+                <div class="form-group field">
+                  <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'email' %>
+                </div>
+                <div class="form-group">
+                  <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: '密码' %>
+                </div>
+                <div class="form-group login-group-checkbox">
+                  <!--<input type="checkbox" id="lg_remember" name="lg_remember">-->
+                  <!--<label for="lg_remember">记住我</label>-->
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me, '记住我' %>
+                </div>
+              </div>
+              <!--<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>-->
+              <div class="actions">
+                <%= f.submit '登陆', class: 'login-button' do %>
+                    <i class="fa fa-chevron-right"></i>
+                <% end %>
+              </div>
+            </div>
+            <div class="etc-login-form">
+              <p>忘记密码? <%= link_to '找回密码', new_password_path(:user) %></p>
+              <p>新用户? <%= link_to '点击注册', new_registration_path(:user) %></p>
+            </div>
+        <% end %>
+      </div>
+      <!-- end:Main Form -->
+    </div>
+  </div>
+</div>

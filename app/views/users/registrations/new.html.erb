@@ -1,0 +1,81 @@
+<% provide(:title, '注册用户') %>
+<!-- REGISTRATION FORM -->
+<div class="text-center" style="padding:50px 0">
+  <div class="row">
+    <div class="col-md-8 col-xs-2">
+      <%= image_tag 'background_login.png', class: 'background-login' %>
+    </div>
+    <div class="col-md-4 col-xs-10 login-form">
+      <div class="logo">欢迎注册<strong>Oracle天眼</strong></div>
+      <!-- Main Form -->
+      <div class="login-form-1">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:role => 'form', multipart: true}) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+              <div class="login-group">
+                <div class="form-group field">
+                  <%= f.email_field :email, autofocus: true, placeholder: 'email', class: 'form-control' %>
+                </div>
+                <div class="form-group field">
+                  <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "密码" %>
+                </div>
+                <div class="form-group field">
+                  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: '确认密码' %>
+                </div>
+
+                <div class="form-group field">
+                  <%= f.text_field :name, class: 'form-control', placeholder: '姓名' %>
+                </div>
+
+                <div class="form-group field">
+                  <%= f.text_field :phone_number, autocomplete: "off", class: 'form-control', placeholder: '联系电话' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.text_field :address, class: 'form-control', placeholder: '家庭住址' %>
+                </div>
+
+                <div class="form-group">
+                  <%= f.text_field :id_card, class: 'form-control', placeholder: '身份证号码' %>
+                </div>
+
+                <div class="form-group login-group-checkbox">
+                  <%= f.radio_button :sex, '男', checked: true, id: 'user_sex_male' %>
+                  <%= f.label :sex_male, '男' %>
+
+                  <%= f.radio_button :sex, '女', id: 'user_sex_female' %>
+                  <%= f.label :sex_female, '女' %>
+                </div>
+
+                <div class="form-group input-group">
+                  <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file btn-sm">上传头像<%= f.file_field :avatar %></span>
+                  </span>
+                  <input type="text" class="form-control" readonly>
+                </div>
+
+                <div class="form-group login-group-checkbox">
+                  <!--<input type="checkbox" class="" id="reg_agree" name="reg_agree">-->
+                  <!--<label for="reg_agree">我已阅读并同意 <a href="#">条款</a></label>-->
+                  <%= f.check_box :reg_agree %>
+                  <%= f.label :reg_agree, '我已阅读并同意条款' %>
+                </div>
+              </div>
+              <!--<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>-->
+              <div class="actions">
+                <%= f.submit '注册', class: 'login-button' do %>
+                    <i class="fa fa-chevron-right"></i>
+                <% end %>
+              </div>
+            </div>
+            <div class="etc-login-form">
+              <p>已注册用户?   <%= link_to "点我登陆", new_session_path(resource_name) %></p>
+            </div>
+        <% end %>
+      </div>
+      <!-- end:Main Form -->
+    </div>
+  </div>
+</div>
+

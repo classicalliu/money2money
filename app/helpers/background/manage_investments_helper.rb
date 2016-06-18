@@ -1,0 +1,2 @@
+module Background::ManageInvestmentsHelper
+end

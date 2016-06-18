@@ -1,0 +1,2 @@
+module Background::ManageLoansHelper
+end

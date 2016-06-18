@@ -1,0 +1,30 @@
+<% provide(:title, '找回密码') %>
+<!-- FORGOT PASSWORD FORM -->
+<div class="text-center" style="padding:50px 0">
+  <div class="logo">忘记密码</div>
+  <!-- Main Form -->
+  <div class="login-form-1">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post, class: 'text-left'}) do |f| %>
+        <%= devise_error_messages! %>
+        <div class="etc-login-form">
+          <p>请正确填写您注册时的电子邮件地址</p>
+        </div>
+        <div class="login-form-main-message"></div>
+        <div class="main-login-form">
+          <div class="login-group">
+            <div class="form-group field">
+              <%= f.email_field :email, autofocus: true, class:'form-control', placeholder: 'email address' %>
+            </div>
+          </div>
+
+          <div class="actions">
+            <%= f.submit '发送', class: 'login-button' do %>
+                <i class="fa fa-chevron-right"></i>
+            <% end %>
+          </div>
+
+        </div>
+    <% end %>
+  </div>
+  <!-- end:Main Form -->
+</div>

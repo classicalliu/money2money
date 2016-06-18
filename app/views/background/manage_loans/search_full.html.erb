@@ -1,0 +1,111 @@
+<%= render 'loan_full_search_high' %>
+<br><br>
+
+<% @search.results.each do |loan| %>
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="timeline">
+
+          <!-- timeline time label -->
+          <li class="time-label">
+            <span class="bg-red">
+              <% time = loan.updated_at %>
+              <%= "#{time.year}年 #{time.month}月 #{time.day}日" %>
+            </span>
+          </li>
+          <!-- /.timeline-label -->
+
+          <!-- timeline item -->
+          <li>
+            <!-- timeline icon -->
+            <i class="fa fa-user bg-blue"></i>
+            <div class="timeline-item">
+              <span class="time"><i class="fa fa-clock-o"></i> <%= "#{time.hour}:#{time.min}" %></span>
+
+              <h3 class="timeline-header"><a href="#">满标项目 </a> <%= loan.use %></h3>
+
+              <div class="timeline-body">
+                <div class="row">
+                  <div class="col-md-3">
+                    <%= image_tag loan.user.avatar.url(:medium), class: 'head-image' %>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="box box-success box-solid">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">个人信息</h3>
+
+                        <!--<div class="box-tools pull-right">-->
+                        <!--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>-->
+                        <!--</div>-->
+                        <!-- /.box-tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body">
+                        email: <%= loan.user.email %><br>
+                        姓名: <%= loan.user.name %><br>
+                        性别: <%= loan.user.sex %><br>
+                        联系电话: <%= loan.user.phone_number %>
+                      </div>
+                      <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                  </div>
+                  <div class="col-md-3">
+                    <div class="box box-warning box-solid">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">借款信息</h3>
+
+                        <!--<div class="box-tools pull-right">-->
+                        <!--<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>-->
+                        <!--</button>-->
+                        <!--</div>-->
+                        <!-- /.box-tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body">
+                        申请金额: <%= loan.mount %><br>
+                        用途: <%= loan.use %><br>
+                        还款方式: <%= loan.way %><br>
+                        还款周期: <%= loan.period %>
+                      </div>
+                      <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                  </div>
+                  <div class="col-md-3">
+                    <div class="box box-danger box-solid">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">工作情况</h3>
+
+                        <!--<div class="box-tools pull-right">-->
+                        <!--<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>-->
+                        <!--</button>-->
+                        <!--</div>-->
+                        <!-- /.box-tools -->
+                      </div>
+                      <!-- /.box-header -->
+                      <div class="box-body">
+                        工作岗位: <%= loan.job %><br>
+                        公司地址: <%= loan.company_add %><br>
+                        月薪: <%= loan.salary %>
+                      </div>
+                      <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-footer">
+                <!--<a class="btn btn-primary btn-xs">查看详情</a>-->
+                <%= link_to '查看详情', background_manage_loan_path(loan), class: 'btn btn-primary btn-xs' %>
+              </div>
+            </div>
+          </li>
+          <!-- END timeline item -->
+        </ul>
+      </div>
+    </div>
+<% end %>
+
+<%= will_paginate @search.hits, :params => { :loan => {:search_text => params[:loan][:search_text], :search_mount => params[:loan][:search_mount], :search_time => params[:loan][:search_time], :search_use => params[:loan][:search_use], :search_period => params[:loan][:search_period]} } %>

@@ -1,0 +1,218 @@
+<% provide(:title, '账户资料') %>
+
+<%= render 'shared/message' %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 toppad">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">用户资料</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-3 col-lg-3 " align="center">
+            <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive">-->
+            <%= image_tag current_user.avatar.url(:medium), class: 'byemax' %>
+            <%# form_for @user, html: {multipart: true} do |f| %>
+            <%# f.file_field :avatar,  onchange: 'this.form.submit()' %>
+            <!--<span class="btn btn-warning btn-file btn-sm upload-btn">上传头像<%# f.file_field :avatar, onChange: 'this.form.submit(); window.alert=null;' %></span>-->
+            <!--<div class="upload-btn">-->
+            <!--<%# f.submit '上传', class: 'btn btn-warning' %>-->
+            <!--</div>-->
+            <%# end %>
+          </div>
+
+          <div class="col-md-9 col-lg-9 ">
+            <table class="table table-user-information">
+              <tbody>
+              <tr>
+                <td>累积投资</td>
+                <td><%= @user.invest_count %></td>
+              </tr>
+              <tr>
+                <td>累积收益</td>
+                <td><%= @user.profit_count %></td>
+              </tr>
+              <tr>
+                <td>待收收益</td>
+                <td><%= @user.profit_not_yet %></td>
+              </tr>
+              <tr>
+                <td>冻结资金</td>
+                <td><%= @user.frozen_capital %></td>
+              </tr>
+              <tr>
+                <td>待收资金</td>
+                <td><%= @user.capital_not_yet %></td>
+              </tr>
+              <tr>
+                <td>可用资金</td>
+                <td><%= @user.valid_capital %></td>
+              </tr>
+              <tr>
+                <td>账户充值</td>
+                <td><%= link_to '充值', add_money_path, class: 'btn btn-primary' %></td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+
+              </tbody>
+            </table>
+
+            <%# link_to '联系我', '#', class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+
+        <!--<a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>-->
+                        <span class="">
+                                  <%= link_to edit_user_path(current_user), data: {'original-title': '编辑我的资料', toggle: 'tooltip'}, type: 'button', class: 'btn btn-sm btn-warning' do %>
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                  <% end %>
+                          <span class="pull-right">
+                            <%= social_share_button_tag "我是#{current_user.name}, 快来注册Money2Money吧~", url: root_url %>
+                          </span>
+
+                          <!--<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>-->
+                          <!--<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>-->
+                        </span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<% unless current_user.investments.empty? %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 toppad">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">共投资 <strong><%= current_user.investments.size %></strong> 人</h3>
+          </div>
+          <div class="panel-body" id="investments-info">
+            <table class="table table-striped table-hover">
+              <tr>
+                <th>投资邮箱</th>
+                <th>投资姓名</th>
+                <th>投资金额</th>
+                <th>查看详情</th>
+              </tr>
+              <% current_user.investments.each do |investment| %>
+                  <tr>
+                    <td><%= investment.loan.user.email %></td>
+                    <td><%= investment.loan.user.name %></td>
+                    <td><%= investment.mount %></td>
+                    <td><%= link_to '查看详情', loan_path(investment.loan) %></td>
+                  </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<%
+  @loans = {}
+  @loans[:passed] = current_user.loans.select {|loan| loan.passed == 'yes'}.sort{|x, y| y.updated_at <=> x.updated_at}
+  @loans[:reject] = current_user.loans.select {|loan| loan.passed == 'failed'}.sort{|x, y| y.updated_at <=> x.updated_at}
+  @loans[:fulled] = current_user.loans.select {|loan| loan.fulled}.sort{|x, y| y.updated_at <=> x.updated_at}
+%>
+
+<% unless @loans[:fulled].empty? %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 toppad">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title">共 <strong><%= @loans[:fulled].size %></strong> 个满标项目</h3>
+          </div>
+          <div class="panel-body" id="investments-info">
+            <table class="table table-striped table-hover">
+              <tr>
+                <th>借款用途</th>
+                <th>借款时间</th>
+                <th>借款金额</th>
+                <th>查看详情</th>
+                <th>还款</th>
+              </tr>
+              <% @loans[:fulled].each do |loan| %>
+                  <tr>
+                    <td><%= loan.use %></td>
+                    <td><%= get_time loan.created_at %></td>
+                    <td><%= loan.mount %></td>
+                    <td><%= link_to '查看详情', loan_path(loan) %></td>
+                    <td><%= link_to '还款', return_loan_path(id: loan.id) %></td>
+                  </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% unless @loans[:passed].empty? %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 toppad">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title">共借款 <strong><%= @loans[:passed].size %></strong> 次</h3>
+          </div>
+          <div class="panel-body" id="investments-info">
+            <table class="table table-striped table-hover">
+              <tr>
+                <th>借款用途</th>
+                <th>借款时间</th>
+                <th>借款金额</th>
+                <th>查看详情</th>
+              </tr>
+              <% @loans[:passed].each do |loan| %>
+                  <tr>
+                    <td><%= loan.use %></td>
+                    <td><%= get_time loan.created_at %></td>
+                    <td><%= loan.mount %></td>
+                    <td><%= link_to '查看详情', loan_path(loan) %></td>
+                  </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+<% unless @loans[:reject].empty? %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 toppad">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title">借款被拒绝 <strong><%= @loans[:reject].size %></strong> 次</h3>
+          </div>
+          <div class="panel-body" id="investments-info">
+            <table class="table table-striped table-hover">
+              <tr>
+                <th>借款用途</th>
+                <th>借款时间</th>
+                <th>借款金额</th>
+                <th>查看详情</th>
+              </tr>
+              <% @loans[:reject].each do |loan| %>
+                  <tr>
+                    <td><%= loan.use %></td>
+                    <td><%= get_time loan.created_at %></td>
+                    <td><%= loan.mount %></td>
+                    <td><%= link_to '查看详情', loan_path(loan) %></td>
+                  </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+

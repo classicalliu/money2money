@@ -1,0 +1,84 @@
+<br><br><br>
+
+<section class="content">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">账户注册</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <!--<form role="form">-->
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="box-body">
+              <div class="form-group">
+                <%= f.label :email, 'Email' %>
+                <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
+              </div>
+              <div class="form-group">
+                <%= f.label :password, '密码' %>
+                <%= f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: '密码' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password_confirmation, '确认密码' %>
+                <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control', placeholder: '确认密码' %>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="form-group">
+                <%= f.label :name, '姓名' %>
+                <%= f.text_field :name, autocomplete: 'off', class: 'form-control', placeholder: '姓名' %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :phone_number, '联系电话' %>
+                <%= f.phone_field :phone_number, autocomplete: 'off', class: 'form-control', placeholder: '联系电话' %>
+              </div>
+              <br>
+
+              <div class="row">
+                <div class="col-md-6 col-lg-6">
+                  <div class="input-group">
+                        <span class="input-group-addon">
+                          <%= f.radio_button :sex, '男', checked: true %>
+                        </span>
+                    <%= f.label :sex_male, '男', class: 'form-control' %>
+                  </div>
+                  <!-- /input-group -->
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-md-6 col-lg-6">
+                  <div class="input-group">
+                        <span class="input-group-addon">
+                          <%= f.radio_button :sex, '女' %>
+                        </span>
+                    <%= f.label :sex_female, '女', class: 'form-control' %>
+                  </div>
+                </div>
+              </div>
+              <br><br>
+
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <span type="button" class="btn btn-danger btn-file">上传头像<%= f.file_field :avatar %></span>
+                </span>
+                <!-- /btn-group -->
+                <input type="text" class="form-control" readonly/>
+              </div>
+
+            </div>
+            <div class="box-footer">
+              <%= f.submit '提交', class: 'btn btn-primary pull-right' %>
+            </div>
+            <!--</form>-->
+        <% end %>
+
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</section>

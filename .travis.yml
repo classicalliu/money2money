@@ -1,0 +1,20 @@
+language: ruby
+env:
+  - USE_OFFICIAL_GEM_SOURCE=1
+
+addons:
+  postgresql: "9.4"
+
+services:
+  - postgresql
+
+rvm:
+  - 2.3.0
+
+before_script:
+  - psql -c 'create database p2p_oracle_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+
+script:
+ - RAILS_ENV=test bundle exec rake db:migrate
+ - RAILS_ENV=test bundle exec rake

@@ -1,0 +1,198 @@
+<% provide(:title, '借款详细信息') %>
+
+<%= render 'shared/message' %>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">借款详细信息</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-4">
+            <h1 class="glyphicon glyphicon-upload"></h1>
+          </div>
+          <div class="col-md-8">
+            <h4>预计年化率</h4>
+            <h4>10%</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-4">
+            <h1 class="glyphicon glyphicon-time"></h1>
+          </div>
+          <div class="col-md-8">
+            <h4>借款时间</h4>
+            <h4><%= @loan.period %>个月</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-4">
+            <h1 class="glyphicon glyphicon-yen"></h1>
+          </div>
+          <div class="col-md-8">
+            <h4>借款金额</h4>
+            <h4><%= @loan.mount %></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--进度条-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="<%= @loan.already_mount / @loan.mount %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @loan.already_mount / @loan.mount * 100 %>%">
+            <%= (@loan.already_mount / @loan.mount * 100).round(1) %>%
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h5>还款方式: <%= @loan.way %></h5>
+      </div>
+      <div class="col-md-4">
+        <h5>用途: <%= @loan.use %></h5>
+      </div>
+      <div class="col-md-4">
+        <!--<h5>担保人: </h5>-->
+        <%= image_tag 'icon/id_card.png', class: 'loan-icon' %>
+        <%= image_tag 'icon/phone.png', class: 'loan-icon' %>
+        <%= image_tag 'icon/work.png', class: 'loan-icon' %>
+        <%= image_tag 'icon/guarantor.png', class: 'loan-icon' %>
+        <%= image_tag 'icon/salary.png', class: 'loan-icon' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 toppad">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">借款人详细资料</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-3 col-lg-3 " align="center">
+            <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive">-->
+            <%= image_tag @loan.user.avatar.url(:medium), class: 'byemax' %>
+          </div>
+
+          <div class=" col-md-9 col-lg-9 ">
+            <table class="table table-user-information">
+              <tbody>
+              <tr>
+                <td>电子邮箱:</td>
+                <td><%= @loan.user.email %></td>
+              </tr>
+              <tr>
+                <td>姓名:</td>
+                <td><%= @loan.user.name %></td>
+              </tr>
+              <tr>
+                <td>联系电话:</td>
+                <td><%= @loan.user.phone_number %></td>
+              </tr>
+              <tr>
+                <td>性别:</td>
+                <td><%= @loan.user.sex %></td>
+              </tr>
+              <tr>
+                <td>家庭住址:</td>
+                <td><%= @loan.user.address %></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+
+              </tbody>
+            </table>
+
+            <%# link_to '联系我', '#', class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <%= mail_to "#{@loan.user.email}", data: {'original-title': '给对方发邮件~', toggle: 'tooltip'}, type: 'button', class: 'btn btn-sm btn-primary' do %>
+            <i class="glyphicon glyphicon-envelope"></i>
+        <% end %>
+
+        <span class="pull-right">
+          <%= social_share_button_tag '我是在Money2Money上发起了借款,快来投资我吧~', url: loan_url(@loan) %>
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-4 toppad">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">我要投资</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <%= form_for @investment do |f| %>
+                <div class="form-group">
+                  <%= f.label '', "还需要#{@loan.mount - @loan.already_mount}" %><br>
+                  <%# f.label :mount, '请输入投资金额' %>
+                  <% if @loan.fulled %>
+                      <%= f.text_field :mount, class: 'form-control', placeholder: '已满标', disabled: 'disabled' %>
+                  <% else %>
+                      <%= f.text_field :mount, class: 'form-control', placeholder: '请输入投资金额(最低100元)' %>
+                  <% end %>
+                  <%= f.hidden_field :loan_id, value: @loan.id %>
+                  <% if user_signed_in? %>
+                      <%= f.label '', "您的可用余额为#{current_user.valid_capital unless current_user.nil?}" %>
+                  <% else %>
+                      <%= f.label '', '请登录后再投资' %>
+                  <% end %>
+                </div>
+                <%= f.submit '确认', class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">共 <strong><%= @loan.investments.size %></strong> 人投资</h3>
+  </div>
+  <div class="panel-body" id="investments-info">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>投资人</th>
+        <th>投资金额</th>
+        <th>投资时间</th>
+      </tr>
+      <% @loan.investments.each do |investment| %>
+          <%
+            name = investment.users.first.name[0]
+            name += '*' * (investment.users.first.name.size-1)
+          %>
+          <tr>
+            <td><%= name %></td>
+            <td><%= investment.mount %></td>
+            <td><%= get_time investment.created_at %></td>
+          </tr>
+
+      <% end %>
+    </table>
+  </div>
+</div>

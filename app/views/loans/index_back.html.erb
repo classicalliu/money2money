@@ -1,0 +1,51 @@
+<% provide(:title, '借款信息浏览') %>
+<div class="row">
+  <div class="col-md-12">
+    <%= image_tag 'loan-ad.jpg', class: 'loan-ad' %>
+  </div>
+</div>
+
+<br><br><br>
+<!-- Plans -->
+<section id="plans">
+  <div class="container">
+    <div class="row">
+
+      <% @loans.each_with_index do |loan, index| %>
+          <% @info = 'danger' if index % 4 == 0 %>
+          <% @info = 'warning' if index % 4 == 1 %>
+          <% @info = 'success' if index % 4 == 2 %>
+          <% @info = 'info' if index % 4 == 3 %>
+          <!-- item -->
+          <div class="col-md-3 text-center">
+            <div class="panel panel-pricing panel-<%= @info %> ">
+              <div class="panel-heading">
+                <!--<i class="fa fa-desktop"></i>-->
+                <i><%= image_tag loan.user.avatar.url(:medium), class: 'loan-index-image' %></i>
+                <h3><%= loan.user.name %></h3>
+              </div>
+              <div class="panel-body text-center">
+                <p><span class="glyphicon glyphicon-yen"></span> <strong><%= loan.mount %></strong></p>
+              </div>
+              <ul class="list-group text-center">
+                <li class="list-group-item"><span class="glyphicon glyphicon-list-alt"></span> <%= loan.use %></li>
+                <li class="list-group-item"><span class="glyphicon glyphicon-pencil"></span> <%= loan.way %></li>
+                <li class="list-group-item"><span class="glyphicon glyphicon-calendar"></span> <%= loan.period %></li>
+              </ul>
+              <div class="panel-footer">
+                <%= link_to '查看详情', loan, class: "btn btn-lg btn-block btn-#{@info}" %>
+              </div>
+            </div>
+          </div>
+          <!-- /item -->
+      <% end %>
+
+    </div>
+
+    <div class="paginate">
+      <%= will_paginate %>
+    </div>
+
+  </div>
+</section>
+<!-- /Plans -->

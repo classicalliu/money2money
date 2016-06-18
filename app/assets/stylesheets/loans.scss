@@ -1,0 +1,254 @@
+// Place all the styles related to the loans controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// loan index
+// Loan的index页面
+
+.panel-pricing {
+  -moz-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  -webkit-transition: all .3s ease;
+}
+
+.panel-pricing:hover {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.panel-pricing .panel-heading {
+  padding: 20px 10px;
+}
+
+.panel-pricing .panel-heading .fa {
+  margin-top: 10px;
+  font-size: 58px;
+}
+
+.panel-pricing .list-group-item {
+  color: #777777;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.5);
+}
+
+.panel-pricing .list-group-item:last-child {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.panel-pricing .list-group-item:first-child {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.panel-pricing .panel-body {
+  background-color: #f0f0f0;
+  font-size: 40px;
+  color: #777777;
+  padding: 20px;
+  margin: 0;
+}
+
+.paginate {
+  float: right;
+}
+
+.loan-ad {
+  width: 100%;
+}
+
+// loan show
+// Loan的show页面
+
+.user-row {
+  margin-bottom: 14px;
+}
+
+.user-row:last-child {
+  margin-bottom: 0;
+}
+
+.dropdown-user {
+  margin: 13px 0;
+  padding: 5px;
+  height: 100%;
+}
+
+.dropdown-user:hover {
+  cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+  border-top: 0;
+}
+
+.table-user-information > tbody > tr > td {
+  border-top: 0;
+}
+
+.toppad {
+  margin-top: 20px;
+}
+
+.byemax {
+  display: block;
+  height: 150px;
+  width: 150px;
+  margin-top: 30px;
+}
+
+// loan的index页面头像
+.loan-index-image {
+  display: block;
+  height: 150px;
+  width: 150px;
+  margin: 15px auto -15px;
+}
+
+// 担保人信息
+
+/*=============================================================
+    Authour URL: www.designbootstrap.com
+
+    http://www.designbootstrap.com/
+
+    License: MIT
+========================================================  */
+
+/*============================================================
+BACKGROUND COLORS
+============================================================*/
+.db-bk-color-1 {
+  background-color: #f55039;
+}
+
+.db-bk-color-2 {
+  background-color: #46A6F7;
+}
+
+.db-bk-color-3 {
+  background-color: #47887E;
+}
+
+.db-bk-color-six {
+  background-color: #F59B24;
+}
+
+/*============================================================
+PRICING STYLES
+==========================================================*/
+.db-padding-btm {
+  padding-bottom: 50px;
+}
+
+.db-button-color-square {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.50);
+  border: none;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+}
+
+.db-button-color-square:hover {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.50);
+  border: none;
+}
+
+.db-pricing-eleven {
+  margin-bottom: 30px;
+  margin-top: 50px;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+  color: #fff;
+  line-height: 30px;
+}
+
+.db-pricing-eleven ul {
+  list-style: none;
+  margin: 0;
+  text-align: center;
+  padding-left: 0px;
+}
+
+.db-pricing-eleven ul li {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+
+.db-pricing-eleven ul li i {
+  margin-right: 5px;
+}
+
+.db-pricing-eleven .price {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 40px 20px 20px 20px;
+  font-size: 60px;
+  font-weight: 900;
+  color: #FFFFFF;
+}
+
+.db-pricing-eleven .price small {
+  color: #B8B8B8;
+  display: block;
+  font-size: 12px;
+  margin-top: 22px;
+}
+
+.db-pricing-eleven .type {
+  background-color: #52E89E;
+  padding: 50px 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.db-pricing-eleven .pricing-footer {
+  padding: 20px;
+}
+
+.db-attached > .col-lg-4,
+.db-attached > .col-lg-3,
+.db-attached > .col-md-4,
+.db-attached > .col-md-3,
+.db-attached > .col-sm-4,
+.db-attached > .col-sm-3 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.db-pricing-eleven.popular {
+  margin-top: 10px;
+}
+
+.db-pricing-eleven.popular .price {
+  padding-top: 80px;
+}
+
+// 投资记录
+#investments-info {
+  height: 300px;
+  overflow: scroll;
+}
+
+// loan index 方框高度
+.loan-index-box-height {
+  height: 160px;
+}
+
+// 证明的图标
+.loan-icon {
+  width: 50px;
+}
+
+// 水平居中
+.horizontal-middle {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: auto;
+  padding-right: auto;
+}
+

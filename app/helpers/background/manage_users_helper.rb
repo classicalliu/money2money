@@ -1,0 +1,2 @@
+module Background::ManageUsersHelper
+end

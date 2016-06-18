@@ -1,0 +1,94 @@
+// Place all the styles related to the static_pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//首页的样式
+
+h3 {
+  margin-top: 50px;
+}
+
+.home-row {
+  display: block;
+  background-color: #F7F7F7;
+  padding-bottom: 20px;
+}
+
+.row .new-user-h4 {
+  text-align: center;
+  color: deepskyblue;
+  font-size: medium;
+}
+
+.row .expect-year {
+  color: slategrey;
+  font-weight: bold;
+  text-align: center;
+}
+
+.row .percent {
+  color: red;
+  text-align: center;
+}
+
+.row .buy-now {
+  margin-top: 40%;
+}
+
+.row .new-user-introduce {
+  padding-top: 20px;
+}
+
+.row .new-user-image {
+  display: block;
+  margin: 40px auto 0;
+}
+
+.row .product-image {
+  margin-top: 20px;
+  height: 200px;
+  width: 200px;
+}
+
+.row p {
+  margin-top: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Source Code Pro", Monaco, monospace;
+  font-size: medium;
+}
+
+.row .product-image {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.row .coming-soon {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  font-size: large;
+  background-color: #e7a3af;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.row .coming-soon .product-preview-image {
+  width: 263px;
+  height: 94px;
+}
+
+.row .please-wait {
+  text-align: center;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  font-size: large;
+  color: crimson;
+  padding-top: 5em;
+}
+
+.data-graph {
+  width: 100%;
+}

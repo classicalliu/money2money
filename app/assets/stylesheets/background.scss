@@ -1,0 +1,33 @@
+/*
+ *
+ *= require AdminLTE/AdminLTE
+ *= require AdminLTE/skins/skin-blue
+ *= require loans
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.head-image {
+  display: block;
+  height: 150px;
+  width: 150px;
+  margin: 0 auto 10px;
+}
+
+// 时间线
+.timeline > .time-label > span {
+  font-weight: 600;
+  padding: 5px;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+// 搜索框
+
+.filter-col{
+  padding-left:10px;
+  padding-right:10px;
+}

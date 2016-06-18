@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1>借款详细信息</h1>
+    <h2>借款人详细信息</h2>
+    <table class="table table-hover table-striped">
+      <tr>
+        <td>email</td>
+        <td><%= @loan_user.email %></td>
+      </tr>
+      <tr>
+        <td>姓名</td>
+        <td><%= @loan_user.name %></td>
+      </tr>
+      <tr>
+        <td>联系电话</td>
+        <td><%= @loan_user.phone_number %></td>
+      </tr>
+    </table>
+    <h2>借款信息</h2>
+    <table class="table table-hover table-striped">
+      <tr>
+        <td>金额</td>
+        <td><%= @loan.mount %></td>
+      </tr>
+      <tr>
+        <td>用途</td>
+        <td><%= @loan.use %></td>
+      </tr>
+      <tr>
+        <td>还款方式</td>
+        <td><%= @loan.way %></td>
+      </tr>
+      <tr>
+        <td>还款周期</td>
+        <td><%= @loan.period %></td>
+      </tr>
+    </table>
+    <h2>投资信息</h2>
+    <table class="table table-hover table-striped">
+      <tr>
+        <td>总金额</td>
+      </tr>
+      <tr>
+        <td>已投金额</td>
+      </tr>
+      <tr>
+        <td>还需投入</td>
+      </tr>
+      <tr>
+        <td>累积投资人</td>
+      </tr>
+    </table>
+
+    <p><%= link_to '投资该项目', {controller: :investments, action: :new, loan_id: @loan.id} %></p>
+  </div>
+</div>

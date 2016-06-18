@@ -1,0 +1,173 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "social-share-button";
+
+//网页背景
+body {
+  //background-color: darkkhaki;
+}
+
+// 导航栏部分
+
+.navbar, .dropdown-menu {
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+}
+
+.navbar-brand {
+  height: 76px;
+  width: 152px;
+}
+
+.navbar .nav li {
+  font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+  font-size: medium;
+  padding-top: 10px;
+}
+
+.nav > li > a, .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover, .dropdown-menu > li > a, .dropdown-menu > li {
+  border-bottom: 3px solid transparent;
+}
+
+.nav > li > a:focus, .nav > li > a:hover, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+  border-bottom: 3px solid transparent;
+  background: none;
+}
+
+.navbar a, .dropdown-menu > li > a, .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover, .navbar-toggle {
+  color: #000;
+}
+
+.dropdown-menu {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1) {
+  border-bottom: #C4E17F 3px solid;
+}
+
+.nav li:hover:nth-child(8n+2), .nav li.active:nth-child(8n+2) {
+  border-bottom: #F7FDCA 3px solid;
+}
+
+.nav li:hover:nth-child(8n+3), .nav li.active:nth-child(8n+3) {
+  border-bottom: #FECF71 3px solid;
+}
+
+.nav li:hover:nth-child(8n+4), .nav li.active:nth-child(8n+4) {
+  border-bottom: #F0776C 3px solid;
+}
+
+.nav li:hover:nth-child(8n+5), .nav li.active:nth-child(8n+5) {
+  border-bottom: #DB9DBE 3px solid;
+}
+
+.nav li:hover:nth-child(8n+6), .nav li.active:nth-child(8n+6) {
+  border-bottom: #C49CDE 3px solid;
+}
+
+.nav li:hover:nth-child(8n+7), .nav li.active:nth-child(8n+7) {
+  border-bottom: #669AE1 3px solid;
+}
+
+.nav li:hover:nth-child(8n+8), .nav li.active:nth-child(8n+8) {
+  border-bottom: #62C2E4 3px solid;
+}
+
+.navbar-toggle .icon-bar {
+  color: #fff;
+  background: #fff;
+}
+
+// 将导航栏隔开
+//#carousel-example-generic {
+//  margin-top: 70px;
+//}
+
+#body {
+  padding-top: 70px;
+}
+
+// 页脚 footer
+
+footer h3 {
+  padding-bottom: 20px;
+  border-bottom: solid 1px #777777;
+}
+
+.footer {
+  font-size: medium;
+  text-align: center;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+}
+
+footer .copyright {
+  display: block;
+  background-color: green;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 30px;
+  padding: 30px 0;
+  border-radius: 4px;
+}
+
+// 定制btn-file样式
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+// 背景图
+#body {
+  background: image-url("background.png") repeat;
+}
+
+// devise 提示消息
+/*flash*/
+.alert-error {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+.alert-alert {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: left;
+}
+
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}
+
+.alert-notice {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #468847;
+  text-align: left;
+}

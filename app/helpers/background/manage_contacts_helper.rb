@@ -1,0 +1,2 @@
+module Background::ManageContactsHelper
+end

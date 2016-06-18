@@ -1,0 +1,2 @@
+module Background::ManageAccountsHelper
+end

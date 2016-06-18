@@ -1,0 +1,39 @@
+<% provide(:title, '还款') %>
+
+<%= render 'shared/message' %>
+
+<!-- FORGOT PASSWORD FORM -->
+<div class="text-center" style="padding:50px 0">
+  <div class="logo">还款</div>
+  <!-- Main Form -->
+  <div class="login-form-1">
+    <%= form_for @user, url: return_pay_path, html: {method: :post, class: 'text-left'} do |f| %>
+        <div class="etc-login-form">
+          <p>共需还款 <%= @loan.should_return %></p>
+          <p>已还 <%= @loan.already_pay %></p>
+          <% if @loan.return_money.select { |n| n['date'] > Time.parse("#{Time.now.year}-#{Time.now.month}-1") }.count > 0 %>
+              <p>您本月已还款</p>
+          <% else %>
+              <p>本月需要还款<%= (@loan.should_return / @loan.period).round(1) %></p>
+          <% end %>
+        </div>
+        <div class="login-form-main-message"></div>
+        <div class="main-login-form">
+          <div class="login-group">
+            <div class="form-group field">
+              <%= f.text_field :money, autofocus: true, class: 'form-control', placeholder: '请输入还款金额' %>
+              <%= f.hidden_field :id_loan, value: @loan.id %>
+            </div>
+          </div>
+
+          <div class="actions">
+            <%= f.submit '还款', class: 'login-button' do %>
+                <i class="fa fa-chevron-right"></i>
+            <% end %>
+          </div>
+
+        </div>
+    <% end %>
+  </div>
+  <!-- end:Main Form -->
+</div>
