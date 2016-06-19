@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.com/classicalliu/p2p_oracle.svg?token=hxoLUSj2NipoqpUjb6eG&branch=master)](https://travis-ci.com/classicalliu/p2p_oracle)
 
-[Heroku](https://damp-reef-94440.herokuapp.com/)(搜索功能不可用)
+[在线查看](https://damp-reef-94440.herokuapp.com/)(搜索功能不可用)
 
 ## 安装
 
